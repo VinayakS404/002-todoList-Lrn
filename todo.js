@@ -1,5 +1,11 @@
-const yourTodoList = [];
-const yourDateAry = [];
+const dataArry = [
+ // {todo : 'wyz', date : 'dd,mm,yy'},
+//  {todo : 'wyz', date : 'dd,mm,yy'},
+//  {todo : 'wyz', date : 'dd,mm,yy'}
+];
+
+let i = 0;
+
 const inputBox = document.querySelector('.js-input');
 const divBox = document.querySelector('.js-div');
 const datebox = document.querySelector('.js-date');
@@ -7,13 +13,20 @@ const datebox = document.querySelector('.js-date');
 
 function addbtn(){
   if(inputBox.value !== '' && datebox.value !== ''){
-    yourTodoList.push(inputBox.value)
-    inputBox.value ='';
 
-    yourDateAry.push(datebox.value)
-    console.log(yourDateAry)
+    dataArry[i] = {
+        todo : inputBox.value,
+        date : datebox.value
+    }
+
+    console.log(dataArry[i])
     addp();
+
+    inputBox.value = '';
+    datebox.value = '';
+
   }
+  i++;
 }
 
 function enterPress(key){
@@ -26,10 +39,10 @@ function addp(){
 
   let html = '';
 
-  for(let i = 0; i<yourTodoList.length; i++){
+  for(let i = 0; i<dataArry.length; i++){
     html += `
       <p>
-        ${yourTodoList[i]} ${yourDateAry[i]}
+        ${dataArry[i].todo} ${dataArry[i].date}
         <button onclick="
           const index = ${i};
           deleteP(index);
@@ -42,7 +55,9 @@ function addp(){
 
 function deleteP(index){
 
-  yourTodoList.splice(index,1);
-  yourDateAry.splice(index,1);
+  dataArry.splice(index,1);
+ // yourDateAry.splice(index,1);
   addp();
 }
+
+// array[] = [{task : xyz , date : dd,mm,yyyy}, {task : xyz , date : dd,mm,yyyy}, {task : xyz , date : dd,mm,yyyy}]
